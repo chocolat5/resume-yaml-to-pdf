@@ -1,0 +1,87 @@
+personal:
+  name: Alex Morgan
+  title: Frontend Developer
+  location: Lisbon, Portugal
+  phone:
+    - +351 900 000 000
+    - +1 555 010 0000
+  email: alex.morgan@example.com
+  nationality: Canadian
+summary:
+  - Frontend developer with 6 years of experience building fast, accessible websites and web apps. I enjoy turning designs into clean, maintainable code and working closely with designers to ship polished user experiences.
+  - Strong focus on performance, accessibility, and design systems.
+  - Comfortable working in English-speaking remote teams across multiple time zones.
+  - Always learning new tools and sharing what I learn through writing and small side projects.
+skills:
+  - HTML / CSS / Sass
+  - JavaScript / TypeScript
+  - React
+  - Astro
+  - Vite
+  - Figma
+  - Git / GitHub
+links:
+  - name: GitHub
+    url: https://github.com/example
+  - name: Portfolio
+    url: https://example.com
+languages:
+  - language: English
+    level: Native
+  - language: French
+    level: Intermediate
+  - language: Portuguese
+    level: Basic
+interests:
+  - Photography
+  - Hiking
+  - Cooking
+  - Reading
+  - Travel
+experience:
+  - title: Frontend Developer
+    company: Example Studio
+    location: Remote
+    period: Apr 2022 - Present
+    responsibilities:
+      - Built and maintained marketing websites for clients using Astro, TypeScript, and a shared design system.
+      - Improved Lighthouse performance scores from around 60 to over 95 by optimizing images, fonts, and scripts.
+      - Worked with designers in Figma to turn layouts into reusable components.
+      - Reviewed pull requests for the team.
+      - Wrote documentation for component usage and coding conventions.
+  - title: Freelance Web Developer
+    company: null
+    location: Toronto, Canada
+    period: Jan 2020 - Mar 2022
+    responsibilities:
+      - Designed and developed websites for small businesses, from first meeting with the client to launch and support.
+      - Set up content management with headless CMS so clients could update pages themselves.
+      - Handled hosting, domains, and basic SEO for each project.
+      - Kept projects on schedule with clear weekly updates to clients.
+  - title: Junior Web Developer
+    company: Sample Agency Inc.
+    location: Toronto, Canada
+    period: Jun 2018 - Dec 2019
+    responsibilities:
+      - Built responsive landing pages and email templates based on designs from the creative team.
+      - Fixed cross-browser layout bugs and improved accessibility on existing client websites.
+projects:
+  - title: Recipe Finder
+    period: "2024"
+    description: A small web app that suggests recipes from the ingredients you have, built with React and a public recipe API.
+    links:
+      - type: demo
+        url: https://example.com/recipe-finder
+  - title: Trail Log
+    period: "2023"
+    description: A static site for logging hiking trails with maps and photos. Built with Astro and deployed to Cloudflare Pages with automatic builds.
+    links:
+      - type: url
+        url: https://example.com/trail-log
+      - type: github
+        url: https://github.com/example/trail-log
+education:
+  - degree: Diploma in Web Development
+    school: Example College
+    location: Toronto, Canada
+    period: Sep 2016 - May 2018
