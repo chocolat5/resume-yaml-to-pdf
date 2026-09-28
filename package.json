@@ -1,8 +1,11 @@
 {
-  "name": "react-vite-boilerplate",
+  "name": "resume-yaml-to-pdf",
+  "description": "A real-time resume editor that turns YAML into a print-ready page for PDF export.",
+  "author": "chocolat5",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "license": "MIT",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
@@ -19,7 +22,8 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "react-dom": "^19.2.1",
+    "yaml": "^2.9.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
