@@ -43,6 +43,7 @@ export default [
           ts: "never",
           tsx: "never",
           svg: "always",
+          css: "always",
         },
       ],
       "simple-import-sort/imports": [
