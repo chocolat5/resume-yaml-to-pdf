@@ -44,6 +44,7 @@ export default [
           tsx: "never",
           svg: "always",
           css: "always",
+          yaml: "always",
         },
       ],
       "simple-import-sort/imports": [
