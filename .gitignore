@@ -90,3 +90,6 @@ web_modules/
 
 dist/
 docs/
+
+# local resume data (personal info)
+*.local.yaml
