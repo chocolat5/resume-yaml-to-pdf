@@ -1,8 +1,10 @@
 import type { Theme } from "@emotion/react";
 import { Global, ThemeProvider } from "@emotion/react";
+import { parse } from "yaml";
 
 import resumeYaml from "@/data/resume.yaml?raw";
 import { theme } from "@/styles/theme";
+import type { Resume } from "@/types";
 
 const globalStyles = (theme: Theme) => ({
   ":root": {
@@ -13,11 +15,13 @@ const globalStyles = (theme: Theme) => ({
   },
 });
 
+const resume: Resume = parse(resumeYaml);
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <Global styles={globalStyles} />
-      <pre>{resumeYaml}</pre>
+      {resume.personal.name}
     </ThemeProvider>
   );
 }
