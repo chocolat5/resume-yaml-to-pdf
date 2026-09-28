@@ -65,7 +65,7 @@
    * Typography
    * ======================================== */
   --font-family:
-    var(--font-jakarta), "Inter", "Segoe UI", "-apple-system",
+    "Plus Jakarta Sans", "Inter", "Segoe UI", "-apple-system",
     "BlinkMacSystemFont", "sans-serif";
 
   /* Font Sizes */
