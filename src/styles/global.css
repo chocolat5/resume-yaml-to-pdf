@@ -109,6 +109,6 @@ a {
 }
 
 :focus {
-  outline-color: rgba(var(--c-text-inverse), 0.2);
+  outline-color: var(--c-text-lighter);
   outline-width: 4px;
 }
