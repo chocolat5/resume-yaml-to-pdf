@@ -1,5 +1,11 @@
 import styled from "@emotion/styled";
 
+const StyledSummary = styled.section`
+  @media print {
+    break-inside: avoid;
+  }
+`;
+
 const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -30,11 +36,11 @@ interface Props {
 }
 
 export const Summary = ({ items }: Props) => (
-  <section>
+  <StyledSummary>
     <StyledList>
       {items.map((item, index) => (
         <StyledListItem key={`${item}-${index}`}>{item}</StyledListItem>
       ))}
     </StyledList>
-  </section>
+  </StyledSummary>
 );

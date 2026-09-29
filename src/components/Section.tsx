@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import type { ReactNode } from "react";
 
@@ -24,6 +25,16 @@ const StyledHeading = styled.h2<{ variant: Variant }>`
   line-height: var(--lh-tight);
 `;
 
+const printStyles = css`
+  @media print {
+    break-inside: avoid;
+  }
+`;
+
+const StyledSection = styled.section<{ variant: Variant }>`
+  ${({ variant }) => variant === "sidebar" && printStyles}
+`;
+
 interface Props {
   children: ReactNode;
   title: string;
@@ -31,8 +42,8 @@ interface Props {
 }
 
 export const Section = ({ children, title, variant }: Props) => (
-  <section>
+  <StyledSection variant={variant}>
     <StyledHeading variant={variant}>{title}</StyledHeading>
     {children}
-  </section>
+  </StyledSection>
 );

@@ -9,6 +9,10 @@ const LINK_LABELS: Record<ProjectLink["type"], string> = {
 };
 
 const StyledItem = styled.article`
+  @media print {
+    break-inside: avoid;
+  }
+
   & + & {
     margin-top: calc(var(--sp-xs) * 3);
   }
@@ -94,6 +98,12 @@ const StyledLink = styled.a`
   color: var(--c-text-light);
   font-size: var(--fs-xxs);
   line-height: var(--lh-normal);
+
+  @media print {
+    &[href^="http"]::after {
+      content: none;
+    }
+  }
 `;
 
 const StyledUrl = styled.span`

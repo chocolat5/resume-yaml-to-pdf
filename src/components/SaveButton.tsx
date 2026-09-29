@@ -14,6 +14,10 @@ const StyledButton = styled.button`
   font-weight: 500;
   line-height: var(--lh-none);
   cursor: pointer;
+
+  @media print {
+    display: none;
+  }
 `;
 
 export const SaveButton = () => {
