@@ -2,6 +2,7 @@ import type { Theme } from "@emotion/react";
 import { Global, ThemeProvider } from "@emotion/react";
 import { parse } from "yaml";
 
+import { ResumeContent } from "@/components/ResumeContent";
 import resumeYaml from "@/data/resume.yaml?raw";
 import { theme } from "@/styles/theme";
 import type { Resume } from "@/types";
@@ -19,10 +20,18 @@ const resume: Resume = parse(resumeYaml);
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Global styles={globalStyles} />
-      {resume.personal.name}
-    </ThemeProvider>
+    <>
+      <title>
+        {`${resume.personal.name}_${resume.personal.title}`.replaceAll(
+          " ",
+          "_"
+        )}
+      </title>
+      <ThemeProvider theme={theme}>
+        <Global styles={globalStyles} />
+        <ResumeContent resume={resume} />
+      </ThemeProvider>
+    </>
   );
 }
 
