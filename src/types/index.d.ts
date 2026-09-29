@@ -18,7 +18,7 @@ export interface Personal {
   nationality: string;
 }
 
-export interface Link {
+export interface SidebarLink {
   name: string;
   url: string;
 }
@@ -59,7 +59,7 @@ export interface Resume {
   personal: Personal;
   summary: string[];
   skills: string[];
-  links: Link[];
+  links: SidebarLink[];
   languages: Language[];
   interests: string[];
   experience: Experience[];
