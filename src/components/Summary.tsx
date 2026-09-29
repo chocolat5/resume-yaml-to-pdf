@@ -24,7 +24,7 @@ const StyledListItem = styled.li`
     color: var(--c-text-light);
   }
 
-  &:first-child {
+  &:first-of-type {
     padding-left: 0;
     text-indent: inherit;
     list-style: none;
