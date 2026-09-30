@@ -15,7 +15,7 @@ const StyledSplitView = styled.div`
   display: grid;
   grid-template-columns: 1fr 210mm;
   min-width: 1200px;
-  padding: var(--sp-2xl) 0;
+  padding: var(--sp-2xl) 0 0;
 
   @media print {
     display: block;
@@ -25,7 +25,7 @@ const StyledSplitView = styled.div`
 `;
 
 const StyledScrollArea = styled.div`
-  height: calc(100vh - (var(--sp-2xl) * 2));
+  height: calc(100vh - var(--sp-2xl));
   overflow-y: auto;
 
   @media print {
