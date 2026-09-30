@@ -2,12 +2,43 @@ import { useState } from "react";
 
 import type { Theme } from "@emotion/react";
 import { Global, ThemeProvider } from "@emotion/react";
+import styled from "@emotion/styled";
 import { parse } from "yaml";
 
+import { Editor } from "@/components/Editor";
 import { ResumeContent } from "@/components/ResumeContent";
 import resumeYamlRaw from "@/data/resume.yaml?raw";
 import { theme } from "@/styles/theme";
 import type { Resume } from "@/types";
+
+const StyledSplitView = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 210mm;
+  min-width: 1200px;
+  padding: var(--sp-2xl) 0;
+
+  @media print {
+    display: block;
+    padding: 0;
+    min-width: unset;
+  }
+`;
+
+const StyledScrollArea = styled.div`
+  height: calc(100vh - (var(--sp-2xl) * 2));
+  overflow-y: auto;
+
+  @media print {
+    height: 100%;
+    overflow: unset;
+  }
+`;
+
+const StyledEditorArea = styled(StyledScrollArea)`
+  @media print {
+    display: none;
+  }
+`;
 
 const globalStyles = (theme: Theme) => ({
   ":root": {
@@ -41,7 +72,16 @@ function App() {
       </title>
       <ThemeProvider theme={theme}>
         <Global styles={globalStyles} />
-        {resume && <ResumeContent resume={resume} />}
+        <StyledSplitView>
+          <StyledEditorArea>
+            <Editor value={resumeYaml} onChange={setResumeYaml} />
+          </StyledEditorArea>
+          {resume && (
+            <StyledScrollArea>
+              <ResumeContent resume={resume} />
+            </StyledScrollArea>
+          )}
+        </StyledSplitView>
       </ThemeProvider>
     </>
   );

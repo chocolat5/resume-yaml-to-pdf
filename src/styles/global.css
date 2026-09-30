@@ -99,7 +99,6 @@ body {
   line-height: 1.6;
   color: var(--c-text);
   background-color: var(--c-bg);
-  padding: var(--sp-2xl) var(--sp-md);
 }
 
 a {
