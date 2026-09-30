@@ -1,11 +1,11 @@
 personal:
-  name: Alex Morgan
+  name: Jane Doe
   title: Frontend Developer
-  location: Lisbon, Portugal
+  location: Toronto, Canada
   phone:
-    - +351 900 000 000
-    - +1 555 010 0000
-  email: alex.morgan@example.com
+    - +1 416 555 0100
+    - +1 416 555 0199
+  email: jane.doe@example.com
   nationality: Canadian
 summary:
   - Frontend developer with 6 years of experience building fast, accessible websites and web apps. I enjoy turning designs into clean, maintainable code and working closely with designers to ship polished user experiences.
@@ -22,9 +22,9 @@ skills:
   - Git / GitHub
 links:
   - name: GitHub
-    url: https://github.com/example
-  - name: Portfolio
-    url: https://example.com
+    url: https://github.com/
+  - name: LinkedIn
+    url: https://www.linkedin.com/
 languages:
   - language: English
     level: Native
@@ -79,7 +79,7 @@ projects:
       - type: url
         url: https://example.com/trail-log
       - type: github
-        url: https://github.com/example/trail-log
+        url: https://github.com/
 education:
   - degree: Diploma in Web Development
     school: Example College
