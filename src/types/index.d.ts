@@ -66,3 +66,10 @@ export interface Resume {
   projects: Project[];
   education: Education[];
 }
+
+export type ResumeError =
+  | { type: "syntax"; line: number; col: number; message: string }
+  | { type: "schema"; paths: string[] };
+
+export type ParseResult =
+  { success: true; data: Resume } | { success: false; error: ResumeError };
