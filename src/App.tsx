@@ -3,13 +3,13 @@ import { useState } from "react";
 import type { Theme } from "@emotion/react";
 import { Global, ThemeProvider } from "@emotion/react";
 import styled from "@emotion/styled";
-import { parse } from "yaml";
 
 import { Editor } from "@/components/Editor";
 import { ResumeContent } from "@/components/ResumeContent";
 import resumeYamlRaw from "@/data/resume.yaml?raw";
 import { theme } from "@/styles/theme";
-import type { Resume } from "@/types";
+import type { Resume, ResumeError } from "@/types";
+import { parseResume } from "@/utils/parseResume";
 
 const StyledSplitView = styled.div`
   display: grid;
@@ -49,22 +49,34 @@ const globalStyles = (theme: Theme) => ({
   },
 });
 
-const parseResume = (yaml: string): Resume | null => {
-  try {
-    return parse(yaml);
-  } catch {
-    return null;
-  }
-};
+const initialResult = parseResume(resumeYamlRaw);
 
 function App() {
-  const [resumeYaml, setResumeYaml] = useState(resumeYamlRaw);
-  const resume = parseResume(resumeYaml);
+  const [yamlText, setYamlText] = useState(resumeYamlRaw);
+  const [lastValidResume, setLastValidResume] = useState<Resume | null>(
+    initialResult.success ? initialResult.data : null
+  );
+  const [error, setError] = useState<ResumeError | null>(
+    initialResult.success ? null : initialResult.error
+  );
+
+  const handleChange = (text: string) => {
+    setYamlText(text);
+
+    const result = parseResume(text);
+    if (result.success) {
+      setLastValidResume(result.data);
+      setError(null);
+    } else {
+      setError(result.error);
+    }
+  };
+
   return (
     <>
       <title>
-        {resume
-          ? `${resume.personal.name}_${resume.personal.title}`.replaceAll(
+        {lastValidResume
+          ? `${lastValidResume.personal.name}_${lastValidResume.personal.title}`.replaceAll(
               " ",
               "_"
             )
@@ -74,11 +86,11 @@ function App() {
         <Global styles={globalStyles} />
         <StyledSplitView>
           <StyledEditorArea>
-            <Editor value={resumeYaml} onChange={setResumeYaml} />
+            <Editor value={yamlText} onChange={handleChange} />
           </StyledEditorArea>
-          {resume && (
+          {lastValidResume && (
             <StyledScrollArea>
-              <ResumeContent resume={resume} />
+              <ResumeContent resume={lastValidResume} />
             </StyledScrollArea>
           )}
         </StyledSplitView>
