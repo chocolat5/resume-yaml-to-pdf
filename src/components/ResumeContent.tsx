@@ -37,21 +37,29 @@ export const ResumeContent = ({ resume }: Props) => (
       <Sidebar>
         <PersonalInfo personal={resume.personal} />
 
-        <Section variant="sidebar" title="Skills">
-          <SimpleList items={resume.skills} />
-        </Section>
+        {resume.skills.length > 0 && (
+          <Section variant="sidebar" title="Skills">
+            <SimpleList items={resume.skills} />
+          </Section>
+        )}
 
-        <Section variant="sidebar" title="Links">
-          <LinkList items={resume.links} />
-        </Section>
+        {resume.links.length > 0 && (
+          <Section variant="sidebar" title="Links">
+            <LinkList items={resume.links} />
+          </Section>
+        )}
 
-        <Section variant="sidebar" title="Languages">
-          <LanguageList items={resume.languages} />
-        </Section>
+        {resume.languages.length > 0 && (
+          <Section variant="sidebar" title="Languages">
+            <LanguageList items={resume.languages} />
+          </Section>
+        )}
 
-        <Section variant="sidebar" title="Interests & Hobbies">
-          <GridList items={resume.interests} />
-        </Section>
+        {resume.interests.length > 0 && (
+          <Section variant="sidebar" title="Interests & Hobbies">
+            <GridList items={resume.interests} />
+          </Section>
+        )}
       </Sidebar>
 
       <MainContent>
@@ -70,29 +78,33 @@ export const ResumeContent = ({ resume }: Props) => (
           ))}
         </Section>
 
-        <Section variant="main" title="Personal Projects">
-          {resume.projects.map((project, index) => (
-            <TimelineItem
-              key={`${project.title}-${index}`}
-              title={project.title}
-              period={project.period}
-              description={project.description}
-              links={project.links}
-            />
-          ))}
-        </Section>
+        {resume.projects.length > 0 && (
+          <Section variant="main" title="Personal Projects">
+            {resume.projects.map((project, index) => (
+              <TimelineItem
+                key={`${project.title}-${index}`}
+                title={project.title}
+                period={project.period}
+                description={project.description}
+                links={project.links}
+              />
+            ))}
+          </Section>
+        )}
 
-        <Section variant="main" title="Education">
-          {resume.education.map((edu, index) => (
-            <TimelineItem
-              key={`${edu.degree}-${index}`}
-              title={edu.degree}
-              subtitle={edu.school}
-              period={edu.period}
-              location={edu.location}
-            />
-          ))}
-        </Section>
+        {resume.education.length > 0 && (
+          <Section variant="main" title="Education">
+            {resume.education.map((edu, index) => (
+              <TimelineItem
+                key={`${edu.degree}-${index}`}
+                title={edu.degree}
+                subtitle={edu.school}
+                period={edu.period}
+                location={edu.location}
+              />
+            ))}
+          </Section>
+        )}
       </MainContent>
     </StyledContent>
     <SaveButton />

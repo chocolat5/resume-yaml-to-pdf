@@ -66,18 +66,22 @@ interface Props {
 export const PersonalInfo = ({ personal }: Props) => (
   <div>
     <StyledName>{personal.name}</StyledName>
-    <StyledTitle>{personal.title}</StyledTitle>
+    {personal.title && <StyledTitle>{personal.title}</StyledTitle>}
 
     <Section title="Details" variant="sidebar">
-      <StyledItem>{personal.location}</StyledItem>
+      {personal.location && <StyledItem>{personal.location}</StyledItem>}
       {personal.phone.map((phone, index) => (
         <StyledItem key={`${phone}-${index}`}>{phone}</StyledItem>
       ))}
       <StyledLink href={`mailto:${personal.email}`}>
         {personal.email}
       </StyledLink>
-      <StyledLabel>Nationality</StyledLabel>
-      <StyledItem>{personal.nationality}</StyledItem>
+      {personal.nationality && (
+        <>
+          <StyledLabel>Nationality</StyledLabel>
+          <StyledItem>{personal.nationality}</StyledItem>
+        </>
+      )}
     </Section>
   </div>
 );

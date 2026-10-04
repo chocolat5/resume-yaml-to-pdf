@@ -13,11 +13,15 @@ const optionalArray = <T extends z.ZodType>(item: T) =>
     .nullish()
     .transform((value) => value ?? []);
 
+const optionalStringArray = optionalArray(optionalString).transform((value) =>
+  value.filter((v) => v)
+);
+
 const personalSchema = z.object({
   name: requiredString,
   title: optionalString,
   location: optionalString,
-  phone: optionalArray(z.string()),
+  phone: optionalStringArray,
   email: z.email(),
   nationality: optionalString,
 });
@@ -37,7 +41,7 @@ const experienceSchema = z.object({
   company: optionalString,
   location: optionalString,
   period: optionalString,
-  responsibilities: optionalArray(z.string()),
+  responsibilities: optionalStringArray,
 });
 
 const projectLinkSchema = z.object({
@@ -49,7 +53,9 @@ const projectSchema = z.object({
   title: requiredString,
   period: optionalString,
   description: optionalString,
-  links: optionalArray(projectLinkSchema),
+  links: optionalArray(projectLinkSchema).transform((value) =>
+    value.filter((value) => value.url)
+  ),
 });
 
 const educationSchema = z.object({
@@ -64,10 +70,14 @@ export const resumeSchema = z.object({
   summary: z.array(z.string()).refine((lines) => lines.join("").length >= 120, {
     message: "Summary must be at least 120 characters",
   }),
-  skills: optionalArray(z.string()),
-  links: optionalArray(sidebarLinkSchema),
-  languages: optionalArray(languageSchema),
-  interests: optionalArray(z.string()),
+  skills: optionalStringArray,
+  links: optionalArray(sidebarLinkSchema).transform((value) =>
+    value.filter((value) => value.name && value.url)
+  ),
+  languages: optionalArray(languageSchema).transform((value) =>
+    value.filter((value) => value.language)
+  ),
+  interests: optionalStringArray,
   experience: z.array(experienceSchema).min(1),
   projects: optionalArray(projectSchema),
   education: optionalArray(educationSchema),
