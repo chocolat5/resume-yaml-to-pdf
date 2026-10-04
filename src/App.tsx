@@ -5,6 +5,7 @@ import { Global, ThemeProvider } from "@emotion/react";
 import styled from "@emotion/styled";
 
 import { Editor } from "@/components/Editor";
+import { ErrorToast } from "@/components/ErrorToast";
 import { ResumeContent } from "@/components/ResumeContent";
 import resumeYamlRaw from "@/data/resume.yaml?raw";
 import { theme } from "@/styles/theme";
@@ -94,6 +95,7 @@ function App() {
             </StyledScrollArea>
           )}
         </StyledSplitView>
+        <ErrorToast error={error} />
       </ThemeProvider>
     </>
   );
