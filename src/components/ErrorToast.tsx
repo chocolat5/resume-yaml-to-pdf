@@ -42,11 +42,16 @@ const StyledWarningIcon = styled(WarningIcon)`
   line-height: var(--lh-snug);
 `;
 
-const StyledErrorToastText = styled.p`
+const StyledErrorToastText = styled.ul`
   color: var(--c-error);
   font-size: var(--fs-sm);
   font-weight: 500;
   line-height: var(--lh-snug);
+
+  span {
+    font-family: monospace;
+    font-weight: 600;
+  }
 `;
 
 interface Props {
@@ -55,18 +60,17 @@ interface Props {
 
 const MAX_ISSUES = 3;
 
-const formatError = (error: ResumeError): string => {
+const formatError = (
+  error: ResumeError
+): { path?: string; message: string }[] => {
   if (error.type === "schema") {
-    const more =
-      error.issues.length > MAX_ISSUES
-        ? ` and ${error.issues.length - MAX_ISSUES} more`
-        : "";
-    return `${error.issues
+    const lines = error.issues
       .slice(0, MAX_ISSUES)
-      .map((issue) => `${issue.path}: ${issue.message}`)
-      .join(", ")}${more}`;
+      .map((issue) => ({ path: issue.path, message: issue.message }));
+    const rest = error.issues.length - MAX_ISSUES;
+    return rest > 0 ? [...lines, { message: `and ${rest} more` }] : lines;
   } else {
-    return error.message.replace(/:$/, "");
+    return [{ message: error.message.replace(/:$/, "") }];
   }
 };
 
@@ -74,7 +78,19 @@ export const ErrorToast = ({ error }: Props) => {
   return error ? (
     <StyledErrorToast role="status">
       <StyledWarningIcon />
-      <StyledErrorToastText>{formatError(error)}</StyledErrorToastText>
+      <StyledErrorToastText>
+        {formatError(error).map((line, index) => (
+          <li key={index}>
+            {line.path && (
+              <>
+                <span>{line.path}</span>
+                {" - "}
+              </>
+            )}
+            {line.message}
+          </li>
+        ))}
+      </StyledErrorToastText>
     </StyledErrorToast>
   ) : null;
 };
