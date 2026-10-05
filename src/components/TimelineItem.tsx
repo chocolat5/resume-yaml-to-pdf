@@ -111,7 +111,7 @@ const StyledUrl = styled.span`
 
 interface Props {
   title: string;
-  subtitle?: string | null;
+  subtitle?: string;
   period: string;
   location?: string;
   description?: string;

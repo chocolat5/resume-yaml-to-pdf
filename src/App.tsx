@@ -77,7 +77,7 @@ function App() {
     <>
       <title>
         {lastValidResume
-          ? `${lastValidResume.personal.name}_${lastValidResume.personal.title}`.replaceAll(
+          ? `${lastValidResume.personal.name}${lastValidResume.personal.title && "_"}${lastValidResume.personal.title}`.replaceAll(
               " ",
               "_"
             )

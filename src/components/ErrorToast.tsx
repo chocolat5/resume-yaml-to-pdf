@@ -60,7 +60,7 @@ const formatError = (error: ResumeError): string => {
 
 export const ErrorToast = ({ error }: Props) => {
   return error ? (
-    <StyledErrorToast role="alert">
+    <StyledErrorToast role="status">
       <StyledWarningIcon />
       {formatError(error)}
     </StyledErrorToast>
