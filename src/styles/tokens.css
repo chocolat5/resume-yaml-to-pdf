@@ -43,7 +43,9 @@
   --c-border-inverse: #343a40;
 
   /* Status */
-  --c-error: #dc2626;
+  --c-error: #e5484d;
+  --c-error-light: #f4b4b5;
+  --c-error-lighter: #fff3f3;
   --c-success: #059669;
   --c-warning: #f59e0b;
 

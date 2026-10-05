@@ -19,10 +19,6 @@ const StyledItem = styled.article`
 `;
 
 const StyledHeader = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: var(--sp-xs) var(--sp-sm);
   margin-bottom: var(--sp-sm);
 `;
 
@@ -49,13 +45,14 @@ const StyledMeta = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-sm);
+  margin-top: var(--sp-xs);
   color: var(--c-text-light);
   font-size: var(--fs-xxs);
   line-height: var(--lh-normal);
 `;
 
 const StyledLocation = styled.span`
-  &::after {
+  &:has(+ span)::after {
     margin-left: var(--sp-xs);
     content: "•";
   }
@@ -114,7 +111,7 @@ const StyledUrl = styled.span`
 
 interface Props {
   title: string;
-  subtitle?: string | null;
+  subtitle?: string;
   period: string;
   location?: string;
   description?: string;
@@ -137,10 +134,12 @@ export const TimelineItem = ({
         <StyledTitle>{title}</StyledTitle>
         {subtitle && <StyledSubtitle>, {subtitle}</StyledSubtitle>}
       </StyledHeading>
-      <StyledMeta>
-        {location && <StyledLocation>{location}</StyledLocation>}
-        <span>{period}</span>
-      </StyledMeta>
+      {(location || period) && (
+        <StyledMeta>
+          {location && <StyledLocation>{location}</StyledLocation>}
+          {period && <span>{period}</span>}
+        </StyledMeta>
+      )}
     </StyledHeader>
 
     {description && <StyledDescription>{description}</StyledDescription>}

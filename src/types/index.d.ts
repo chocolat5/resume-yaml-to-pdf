@@ -1,3 +1,7 @@
+import type { z } from "zod";
+
+import type { resumeSchema } from "@/schemas/resume";
+
 import "@emotion/react";
 
 declare module "@emotion/react" {
@@ -9,60 +13,17 @@ declare module "@emotion/react" {
   }
 }
 
-export interface Personal {
-  name: string;
-  title: string;
-  location: string;
-  phone: string[];
-  email: string;
-  nationality: string;
-}
+export type Resume = z.infer<typeof resumeSchema>;
 
-export interface SidebarLink {
-  name: string;
-  url: string;
-}
+export type Personal = Resume["personal"];
+export type SidebarLink = Resume["links"][number];
+export type Language = Resume["languages"][number];
 
-export interface Language {
-  language: string;
-  level: string;
-}
+export type ProjectLink = Resume["projects"][number]["links"][number];
 
-export interface Experience {
-  title: string;
-  company?: string | null;
-  location: string;
-  period: string;
-  responsibilities: string[];
-}
+export type ResumeError =
+  | { type: "syntax"; line: number; col: number; message: string }
+  | { type: "schema"; issues: { path: string; message: string }[] };
 
-export interface ProjectLink {
-  type: "demo" | "url" | "github";
-  url: string;
-}
-
-export interface Project {
-  title: string;
-  period: string;
-  description: string;
-  links: ProjectLink[];
-}
-
-export interface Education {
-  degree: string;
-  school: string;
-  location: string;
-  period: string;
-}
-
-export interface Resume {
-  personal: Personal;
-  summary: string[];
-  skills: string[];
-  links: SidebarLink[];
-  languages: Language[];
-  interests: string[];
-  experience: Experience[];
-  projects: Project[];
-  education: Education[];
-}
+export type ParseResult =
+  { success: true; data: Resume } | { success: false; error: ResumeError };

@@ -1,5 +1,5 @@
 import { yaml } from "@codemirror/lang-yaml";
-import CodeMirror from "@uiw/react-codemirror";
+import CodeMirror, { EditorView } from "@uiw/react-codemirror";
 
 interface Props {
   value: string;
@@ -11,7 +11,7 @@ export const Editor = ({ value, onChange }: Props) => {
     <CodeMirror
       value={value}
       onChange={onChange}
-      extensions={[yaml()]}
+      extensions={[EditorView.lineWrapping, yaml()]}
       height="100%"
     />
   );
