@@ -12,21 +12,19 @@ const fadeIn = keyframes`
 
 const StyledErrorToast = styled.div`
   display: flex;
+  align-items: flex-start;
+  gap: var(--sp-sm);
   position: fixed;
   inset: 0;
   margin: auto auto var(--sp-base);
+  padding: calc(var(--sp-xs) * 3) var(--sp-md);
   width: fit-content;
+  max-width: 600px;
   height: fit-content;
   z-index: var(--z-toast);
-  align-items: center;
-  gap: var(--sp-sm);
-  padding: calc(var(--sp-xs) * 3) var(--sp-md);
   border: 1px solid var(--c-error-light);
   border-radius: var(--radius-md);
   background-color: var(--c-error-lighter);
-  color: var(--c-error);
-  font-size: var(--fs-sm);
-  font-weight: 500;
   line-height: var(--lh-none);
   animation: ${fadeIn} var(--transition-base) var(--ease-out-quart)
     var(--transition-slower) backwards;
@@ -37,22 +35,36 @@ const StyledErrorToast = styled.div`
 `;
 
 const StyledWarningIcon = styled(WarningIcon)`
+  flex-shrink: 0;
+  margin-top: calc(var(--sp-xs) / 2);
+  color: var(--c-error);
   font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+`;
+
+const StyledErrorToastText = styled.p`
+  color: var(--c-error);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: var(--lh-snug);
 `;
 
 interface Props {
   error: ResumeError | null;
 }
 
-const MAX_PATHS = 3;
+const MAX_ISSUES = 3;
 
 const formatError = (error: ResumeError): string => {
   if (error.type === "schema") {
     const more =
-      error.paths.length > MAX_PATHS
-        ? ` and ${error.paths.length - MAX_PATHS} more`
+      error.issues.length > MAX_ISSUES
+        ? ` and ${error.issues.length - MAX_ISSUES} more`
         : "";
-    return `Error in ${error.paths.slice(0, MAX_PATHS).join(", ")}${more}`;
+    return `${error.issues
+      .slice(0, MAX_ISSUES)
+      .map((issue) => `${issue.path}: ${issue.message}`)
+      .join(", ")}${more}`;
   } else {
     return error.message.replace(/:$/, "");
   }
@@ -62,7 +74,7 @@ export const ErrorToast = ({ error }: Props) => {
   return error ? (
     <StyledErrorToast role="status">
       <StyledWarningIcon />
-      {formatError(error)}
+      <StyledErrorToastText>{formatError(error)}</StyledErrorToastText>
     </StyledErrorToast>
   ) : null;
 };

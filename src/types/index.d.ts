@@ -23,7 +23,7 @@ export type ProjectLink = Resume["projects"][number]["links"][number];
 
 export type ResumeError =
   | { type: "syntax"; line: number; col: number; message: string }
-  | { type: "schema"; paths: string[] };
+  | { type: "schema"; issues: { path: string; message: string }[] };
 
 export type ParseResult =
   { success: true; data: Resume } | { success: false; error: ResumeError };

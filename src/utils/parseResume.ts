@@ -13,9 +13,10 @@ export const parseResume = (yaml: string): ParseResult => {
         success: false,
         error: {
           type: "schema",
-          paths: result.error.issues.map(
-            (issue) => issue.path.join(".") || "root"
-          ),
+          issues: result.error.issues.map((issue) => ({
+            path: issue.path.join(".") || "root",
+            message: issue.message,
+          })),
         },
       };
     }
