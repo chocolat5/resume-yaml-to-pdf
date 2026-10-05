@@ -19,7 +19,7 @@ const StyledErrorToast = styled.div`
   margin: auto auto var(--sp-base);
   padding: calc(var(--sp-xs) * 3) var(--sp-md);
   width: fit-content;
-  max-width: 600px;
+  max-width: 640px;
   height: fit-content;
   z-index: var(--z-toast);
   border: 1px solid var(--c-error-light);
