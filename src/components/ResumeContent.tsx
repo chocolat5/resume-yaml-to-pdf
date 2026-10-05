@@ -63,7 +63,7 @@ export const ResumeContent = ({ resume }: Props) => (
       </Sidebar>
 
       <MainContent>
-        <Summary items={resume.summary} />
+        <Summary text={resume.summary} />
 
         <Section variant="main" title="Employment History">
           {resume.experience.map((exp, index) => (

@@ -6,41 +6,29 @@ const StyledSummary = styled.section`
   }
 `;
 
-const StyledList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-xs);
-  list-style: disc inside;
-`;
-
-const StyledListItem = styled.li`
+const StyledSummaryText = styled.p`
   color: var(--c-text);
   font-size: var(--fs-xxs);
   line-height: var(--lh-normal);
-  text-indent: -1.2em;
-  padding-left: 1em;
+  white-space: pre-wrap;
 
-  &::marker {
-    color: var(--c-text-light);
-  }
-
-  &:first-of-type {
-    padding-left: 0;
-    text-indent: inherit;
-    list-style: none;
+  & + & {
+    margin-top: var(--sp-xs);
   }
 `;
 
 interface Props {
-  items: string[];
+  text: string;
 }
 
-export const Summary = ({ items }: Props) => (
-  <StyledSummary>
-    <StyledList>
-      {items.map((item, index) => (
-        <StyledListItem key={`${item}-${index}`}>{item}</StyledListItem>
+export const Summary = ({ text }: Props) => {
+  const paragraphs = text.split(/\n\s*\n/);
+
+  return (
+    <StyledSummary>
+      {paragraphs.map((paragraph, index) => (
+        <StyledSummaryText key={index}>{paragraph}</StyledSummaryText>
       ))}
-    </StyledList>
-  </StyledSummary>
-);
+    </StyledSummary>
+  );
+};

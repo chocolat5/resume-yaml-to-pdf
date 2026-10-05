@@ -7,11 +7,12 @@ personal:
     - +1 416 555 0199
   email: jane.doe@example.com
   nationality: Canadian
-summary:
-  - Frontend developer with 6 years of experience building fast, accessible websites and web apps. I enjoy turning designs into clean, maintainable code and working closely with designers to ship polished user experiences.
-  - Strong focus on performance, accessibility, and design systems.
-  - Comfortable working in English-speaking remote teams across multiple time zones.
-  - Always learning new tools and sharing what I learn through writing and small side projects.
+summary: |
+  Frontend developer with 6 years of experience building fast, accessible websites and web apps. I enjoy turning designs into clean, maintainable code and working closely with designers to ship polished user experiences.
+
+  Strong focus on performance, accessibility, and design systems.
+  Comfortable working in English-speaking remote teams across multiple time zones.
+  Always learning new tools and sharing what I learn through writing and small side projects.
 skills:
   - HTML / CSS / Sass
   - JavaScript / TypeScript
