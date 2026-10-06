@@ -3,9 +3,13 @@ import { useState } from "react";
 import type { Theme } from "@emotion/react";
 import { Global, ThemeProvider } from "@emotion/react";
 import styled from "@emotion/styled";
+import type { CSSProperties } from "react";
 
+import { Button } from "@/components/Button";
 import { Editor } from "@/components/Editor";
 import { ErrorToast } from "@/components/ErrorToast";
+import { Header } from "@/components/Header";
+import { ExportIcon, ImportIcon, PdfIcon, ResetIcon } from "@/components/Icon";
 import { ResumeContent } from "@/components/ResumeContent";
 import resumeYamlRaw from "@/data/resume.yaml?raw";
 import { theme } from "@/styles/theme";
@@ -16,7 +20,6 @@ const StyledSplitView = styled.div`
   display: grid;
   grid-template-columns: 1fr 210mm;
   min-width: 1200px;
-  padding: var(--sp-2xl) 0 0;
 
   @media print {
     display: block;
@@ -25,8 +28,8 @@ const StyledSplitView = styled.div`
   }
 `;
 
-const StyledScrollArea = styled.div`
-  height: calc(100vh - var(--sp-2xl));
+const StyledScrollArea = styled.div<{ headerHeight: CSSProperties["height"] }>`
+  height: ${({ headerHeight }) => `calc(100vh - ${headerHeight})`};
   overflow-y: auto;
 
   @media print {
@@ -51,6 +54,7 @@ const globalStyles = (theme: Theme) => ({
 });
 
 const initialResult = parseResume(resumeYamlRaw);
+const HEADER_HEIGHT = "52px";
 
 function App() {
   const [yamlText, setYamlText] = useState(resumeYamlRaw);
@@ -73,6 +77,10 @@ function App() {
     }
   };
 
+  const onSave = () => {
+    window.print();
+  };
+
   return (
     <>
       <title>
@@ -85,12 +93,41 @@ function App() {
       </title>
       <ThemeProvider theme={theme}>
         <Global styles={globalStyles} />
+        <Header
+          headerHeight={HEADER_HEIGHT}
+          actions={
+            <>
+              <Button
+                label="Import"
+                icon={<ImportIcon size="var(--fs-md)" />}
+                onClick={() => null}
+              />
+              <Button
+                label="Export"
+                icon={<ExportIcon size="var(--fs-md)" />}
+                onClick={() => null}
+              />
+              <Button
+                label="Reset"
+                icon={<ResetIcon size="var(--fs-md)" />}
+                onClick={() => null}
+              />
+            </>
+          }
+          primaryAction={
+            <Button
+              label="Save PDF"
+              icon={<PdfIcon size="var(--fs-md)" />}
+              onClick={onSave}
+            />
+          }
+        />
         <StyledSplitView>
-          <StyledEditorArea>
+          <StyledEditorArea headerHeight={HEADER_HEIGHT}>
             <Editor value={yamlText} onChange={handleChange} />
           </StyledEditorArea>
           {lastValidResume && (
-            <StyledScrollArea>
+            <StyledScrollArea headerHeight={HEADER_HEIGHT}>
               <ResumeContent resume={lastValidResume} />
             </StyledScrollArea>
           )}
