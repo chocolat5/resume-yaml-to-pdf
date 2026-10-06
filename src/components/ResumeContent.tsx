@@ -5,7 +5,6 @@ import { LanguageList } from "@/components/LanguageList";
 import { LinkList } from "@/components/LinkList";
 import { MainContent } from "@/components/MainContent";
 import { PersonalInfo } from "@/components/PersonalInfo";
-import { SaveButton } from "@/components/SaveButton";
 import { Section } from "@/components/Section";
 import { Sidebar } from "@/components/Sidebar";
 import { SimpleList } from "@/components/SimpleList";
@@ -107,6 +106,5 @@ export const ResumeContent = ({ resume }: Props) => (
         )}
       </MainContent>
     </StyledContent>
-    <SaveButton />
   </StyledWrapper>
 );
