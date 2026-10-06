@@ -1,33 +1,32 @@
 import styled from "@emotion/styled";
+import type { ReactElement } from "react";
 
 const StyledButton = styled.button`
-  position: fixed;
-  top: var(--sp-md);
-  right: var(--sp-md);
-  z-index: var(--z-fixed);
-  padding: calc(var(--sp-xs) * 3) var(--sp-md);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  padding: var(--sp-sm) calc(var(--sp-xs) * 3);
   border: 1px solid var(--c-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   background-color: var(--c-bg-alt);
   color: var(--c-text);
   font-size: var(--fs-sm);
   font-weight: 500;
   line-height: var(--lh-none);
   cursor: pointer;
-
-  @media print {
-    display: none;
-  }
 `;
 
-export const SaveButton = () => {
-  const onClick = () => {
-    window.print();
-  };
+interface Props {
+  icon?: ReactElement;
+  label: string;
+  onClick: () => void;
+}
 
+export const Button = ({ icon, label, onClick }: Props) => {
   return (
     <StyledButton onClick={onClick} type="button">
-      Save as PDF
+      {icon}
+      {label}
     </StyledButton>
   );
 };
