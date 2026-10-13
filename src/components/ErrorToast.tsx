@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
-import { WarningIcon } from "@/components/WarningIcon";
+import { WarningIcon } from "@/components/Icon";
 import type { ResumeError } from "@/types";
 
 const fadeIn = keyframes`
@@ -37,8 +37,6 @@ const StyledErrorToast = styled.div`
 const StyledWarningIcon = styled(WarningIcon)`
   flex-shrink: 0;
   margin-top: calc(var(--sp-xs) / 2);
-  color: var(--c-error);
-  font-size: var(--fs-md);
   line-height: var(--lh-snug);
 `;
 
@@ -77,7 +75,7 @@ const formatError = (
 export const ErrorToast = ({ error }: Props) => {
   return error ? (
     <StyledErrorToast role="status">
-      <StyledWarningIcon />
+      <StyledWarningIcon color="var(--c-error)" size="var(--fs-md)" />
       <StyledErrorToastText>
         {formatError(error).map((line, index) => (
           <li key={index}>

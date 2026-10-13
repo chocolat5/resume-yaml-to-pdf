@@ -67,9 +67,7 @@ const educationSchema = z.object({
 
 export const resumeSchema = z.object({
   personal: personalSchema,
-  summary: z.string().trim().min(120, {
-    message: "Summary must be at least 120 characters",
-  }),
+  summary: requiredString,
   skills: optionalStringArray,
   links: optionalArray(sidebarLinkSchema).transform((value) =>
     value.filter((value) => value.name && value.url)
