@@ -4,13 +4,13 @@ import type { ReactElement } from "react";
 const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
-  gap: var(--sp-xs);
+  gap: var(--sp-sm);
   padding: var(--sp-sm) calc(var(--sp-xs) * 3);
   border: 1px solid var(--c-border);
   border-radius: var(--radius-md);
   background-color: var(--c-bg-alt);
   color: var(--c-text);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-xs);
   font-weight: 500;
   line-height: var(--lh-none);
   cursor: pointer;

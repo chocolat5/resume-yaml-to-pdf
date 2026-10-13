@@ -99,17 +99,17 @@ function App() {
             <>
               <Button
                 label="Import"
-                icon={<ImportIcon size="var(--fs-md)" />}
+                icon={<ImportIcon size="var(--fs-base)" />}
                 onClick={() => null}
               />
               <Button
                 label="Export"
-                icon={<ExportIcon size="var(--fs-md)" />}
+                icon={<ExportIcon size="var(--fs-base)" />}
                 onClick={() => null}
               />
               <Button
                 label="Reset"
-                icon={<ResetIcon size="var(--fs-md)" />}
+                icon={<ResetIcon size="var(--fs-base)" />}
                 onClick={() => null}
               />
             </>
@@ -117,7 +117,7 @@ function App() {
           primaryAction={
             <Button
               label="Save PDF"
-              icon={<PdfIcon size="var(--fs-md)" />}
+              icon={<PdfIcon size="var(--fs-base)" />}
               onClick={onSave}
             />
           }
