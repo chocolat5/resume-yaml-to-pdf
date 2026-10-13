@@ -21,15 +21,23 @@ import {
   setLocalStorageYaml,
 } from "@/utils/resumeStorage";
 
+const StyledWrapper = styled.div`
+  min-width: 1200px;
+  max-width: 1560px;
+  margin: 0 auto;
+
+  @media print {
+    min-width: unset;
+  }
+`;
+
 const StyledSplitView = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
-  min-width: 1200px;
 
   @media print {
     display: block;
     padding: 0;
-    min-width: unset;
   }
 `;
 
@@ -147,54 +155,56 @@ function App() {
       </title>
       <ThemeProvider theme={theme}>
         <Global styles={globalStyles} />
-        <Header
-          headerHeight={HEADER_HEIGHT}
-          actions={
-            <>
-              <input
-                type="file"
-                accept={FILE_TYPE}
-                ref={importRef}
-                onChange={handleImport}
-                hidden
-              />
+        <StyledWrapper>
+          <Header
+            headerHeight={HEADER_HEIGHT}
+            actions={
+              <>
+                <input
+                  type="file"
+                  accept={FILE_TYPE}
+                  ref={importRef}
+                  onChange={handleImport}
+                  hidden
+                />
+                <Button
+                  label="Import"
+                  icon={<ImportIcon size="var(--fs-base)" />}
+                  onClick={() => {
+                    importRef.current?.click();
+                  }}
+                />
+                <Button
+                  label="Export"
+                  icon={<ExportIcon size="var(--fs-base)" />}
+                  onClick={handleExport}
+                />
+                <Button
+                  label="Reset"
+                  icon={<ResetIcon size="var(--fs-base)" />}
+                  onClick={handleReset}
+                />
+              </>
+            }
+            primaryAction={
               <Button
-                label="Import"
-                icon={<ImportIcon size="var(--fs-base)" />}
-                onClick={() => {
-                  importRef.current?.click();
-                }}
+                label="Save PDF"
+                icon={<PdfIcon size="var(--fs-base)" />}
+                onClick={onSave}
               />
-              <Button
-                label="Export"
-                icon={<ExportIcon size="var(--fs-base)" />}
-                onClick={handleExport}
-              />
-              <Button
-                label="Reset"
-                icon={<ResetIcon size="var(--fs-base)" />}
-                onClick={handleReset}
-              />
-            </>
-          }
-          primaryAction={
-            <Button
-              label="Save PDF"
-              icon={<PdfIcon size="var(--fs-base)" />}
-              onClick={onSave}
-            />
-          }
-        />
-        <StyledSplitView>
-          <StyledEditorArea headerHeight={HEADER_HEIGHT}>
-            <Editor value={yamlText} onChange={handleChange} />
-          </StyledEditorArea>
-          {lastValidResume && (
-            <StyledScrollArea headerHeight={HEADER_HEIGHT}>
-              <ResumeContent resume={lastValidResume} />
-            </StyledScrollArea>
-          )}
-        </StyledSplitView>
+            }
+          />
+          <StyledSplitView>
+            <StyledEditorArea headerHeight={HEADER_HEIGHT}>
+              <Editor value={yamlText} onChange={handleChange} />
+            </StyledEditorArea>
+            {lastValidResume && (
+              <StyledScrollArea headerHeight={HEADER_HEIGHT}>
+                <ResumeContent resume={lastValidResume} />
+              </StyledScrollArea>
+            )}
+          </StyledSplitView>
+        </StyledWrapper>
         <ErrorToast error={error} />
       </ThemeProvider>
     </>

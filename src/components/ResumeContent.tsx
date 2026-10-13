@@ -12,13 +12,21 @@ import { Summary } from "@/components/Summary";
 import { TimelineItem } from "@/components/TimelineItem";
 import type { Resume } from "@/types/index";
 
-const PREVIEW_RATIO = 0.85;
+const BASE_PREVIEW_RATIO = 0.85;
 
 const StyledWrapper = styled.div`
   position: relative;
   width: 210mm;
   margin: 0 auto;
-  zoom: ${PREVIEW_RATIO};
+  zoom: ${BASE_PREVIEW_RATIO};
+
+  @media screen and (min-width: 1440px) {
+    zoom: 0.9;
+  }
+
+  @media screen and (min-width: 1560px) {
+    zoom: 1;
+  }
 
   &::after {
     position: absolute;
