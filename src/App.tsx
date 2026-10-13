@@ -15,6 +15,10 @@ import resumeYamlRaw from "@/data/resume.yaml?raw";
 import { theme } from "@/styles/theme";
 import type { Resume, ResumeError } from "@/types";
 import { parseResume } from "@/utils/parseResume";
+import {
+  getLocalStorageYaml,
+  setLocalStorageYaml,
+} from "@/utils/resumeStorage";
 
 const StyledSplitView = styled.div`
   display: grid;
@@ -53,11 +57,12 @@ const globalStyles = (theme: Theme) => ({
   },
 });
 
-const initialResult = parseResume(resumeYamlRaw);
+const yamlData = getLocalStorageYaml() || resumeYamlRaw;
+const initialResult = parseResume(yamlData);
 const HEADER_HEIGHT = "52px";
 
 function App() {
-  const [yamlText, setYamlText] = useState(resumeYamlRaw);
+  const [yamlText, setYamlText] = useState(yamlData);
   const [lastValidResume, setLastValidResume] = useState<Resume | null>(
     initialResult.success ? initialResult.data : null
   );
@@ -71,6 +76,7 @@ function App() {
     const result = parseResume(text);
     if (result.success) {
       setLastValidResume(result.data);
+      setLocalStorageYaml(text);
       setError(null);
     } else {
       setError(result.error);
