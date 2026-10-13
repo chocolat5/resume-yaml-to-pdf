@@ -12,10 +12,45 @@ import { Summary } from "@/components/Summary";
 import { TimelineItem } from "@/components/TimelineItem";
 import type { Resume } from "@/types/index";
 
+const PREVIEW_RATIO = 0.85;
+
 const StyledWrapper = styled.div`
   position: relative;
-  max-width: 210mm;
+  width: 210mm;
   margin: 0 auto;
+  zoom: ${PREVIEW_RATIO};
+
+  &::after {
+    position: absolute;
+    top: 297mm;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    content: "";
+    background: repeating-linear-gradient(
+      var(--c-error) 0,
+      var(--c-error) 2px,
+      transparent 2px,
+      transparent 297mm
+    );
+    mask-image: repeating-linear-gradient(
+      to right,
+      #000 0,
+      #000 2px,
+      transparent 2px,
+      transparent 5px
+    );
+    pointer-events: none;
+  }
+
+  @media print {
+    zoom: 1;
+
+    &::after {
+      display: none;
+    }
+  }
 `;
 
 const StyledContent = styled.div`

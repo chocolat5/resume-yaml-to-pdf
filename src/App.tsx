@@ -23,7 +23,7 @@ import {
 
 const StyledSplitView = styled.div`
   display: grid;
-  grid-template-columns: 1fr 210mm;
+  grid-template-columns: 1fr auto;
   min-width: 1200px;
 
   @media print {
@@ -36,6 +36,7 @@ const StyledSplitView = styled.div`
 const StyledScrollArea = styled.div<{ headerHeight: CSSProperties["height"] }>`
   height: ${({ headerHeight }) => `calc(100vh - ${headerHeight})`};
   overflow-y: auto;
+  scrollbar-gutter: stable;
 
   @media print {
     height: 100%;
