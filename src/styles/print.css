@@ -1,0 +1,25 @@
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    background-color: var(--c-bg-alt);
+  }
+
+  a {
+    color: var(--c-text);
+    text-decoration: none;
+  }
+
+  a[href^="http"]::after {
+    display: block;
+    color: var(--c-text-light);
+    font-size: var(--fs-xs);
+    content: " (" attr(href) ")";
+  }
+}
