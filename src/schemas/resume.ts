@@ -7,6 +7,19 @@ const optionalString = z
 
 const requiredString = z.string().trim().min(1);
 
+const isHttpUrl = (value: string) => {
+  try {
+    return ["http:", "https:"].includes(new URL(value).protocol);
+  } catch {
+    return false;
+  }
+};
+
+const optionalHttpUrl = optionalString.refine(
+  (value) => value === "" || isHttpUrl(value),
+  { message: "URL must start with http:// or https://" }
+);
+
 const optionalArray = <T extends z.ZodType>(item: T) =>
   z
     .array(item)
@@ -28,7 +41,7 @@ const personalSchema = z.object({
 
 const sidebarLinkSchema = z.object({
   name: optionalString,
-  url: optionalString,
+  url: optionalHttpUrl,
 });
 
 const languageSchema = z.object({
@@ -46,7 +59,7 @@ const experienceSchema = z.object({
 
 const projectLinkSchema = z.object({
   type: z.enum(["demo", "url", "github"]),
-  url: optionalString,
+  url: optionalHttpUrl,
 });
 
 const projectSchema = z.object({
