@@ -56,21 +56,19 @@ npm run check
 
 ### high
 
-- [ ] Input field for the PDF file name
-- [ ] Change the resume colors from YAML (`theme`)
+- [ ] Input field for the PDF file name ([#7](https://github.com/chocolat5/resume-yaml-to-pdf/issues/7))
+- [ ] Change the resume colors from YAML (`theme`) ([#8](https://github.com/chocolat5/resume-yaml-to-pdf/issues/8))
 
 ### medium
 
-- [ ] Show the error position inside the editor
-- [ ] Show more than one syntax error at a time
-- [ ] Import a YAML file by drag and drop
-- [ ] Improve the color contrast of error messages
+- [ ] Show the error position inside the editor ([#9](https://github.com/chocolat5/resume-yaml-to-pdf/issues/9))
+- [ ] Show more than one syntax error at a time ([#10](https://github.com/chocolat5/resume-yaml-to-pdf/issues/10))
+- [ ] Improve the color contrast of error messages ([#12](https://github.com/chocolat5/resume-yaml-to-pdf/issues/12))
 
 ### low
 
-- [ ] Show the number of pages
-- [ ] Let users choose the preview size (50% / 75% / 100%)
-- [ ] Show the time of the last save
+- [ ] Import a YAML file by drag and drop ([#11](https://github.com/chocolat5/resume-yaml-to-pdf/issues/11))
+- [ ] Let users choose the preview size (50% / 75% / 100%) ([#14](https://github.com/chocolat5/resume-yaml-to-pdf/issues/14))
 
 ## Development Process
 
